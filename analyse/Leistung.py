@@ -20,7 +20,7 @@ C_rot = 1.2
 # pAlpha: steigungswinkel (rad)
 
 def f(pV):
-    return 0.015
+    return 0.0125
 def F_ST(pAlpha):
     return m*g*sin(pAlpha)
 def F_r(pV, pAlpha):
@@ -30,7 +30,7 @@ def F_L(pV):
 def F_a(pa):
     return (1+C_rot)*m*pa
 def F_w(pV, pa, pAlpha):
-    return F_r(pV,pAlpha)+F_L(pV)+F_a(pa)
+    return F_ST(pAlpha)+F_r(pV,pAlpha)+F_L(pV)+F_a(pa)
 
 #####################
 # Funktionen zur Momentanen Bestimmung der Leistung des Motors
@@ -39,7 +39,7 @@ def leistung_1(pV, pa ,pAlpha):
     # pV: momentane Geschwindigkeit
     # pa: momentane Beschleunigung
     # pAlpha: steigungswinkel
-    return F_ST(pAlpha)F_w(pV, pa, pAlpha) * pV
+    return F_w(pV, pa, pAlpha) * pV
 
 def leistung_2(pL,pRPM):
     pass
