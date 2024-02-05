@@ -8,11 +8,11 @@ luftdichte = 1.205 # kg/m^3
 # Masse des Autos:
 m = 1011 # kg
 # Aerodynamischer Widerstandsbeiwert:
-cw = 0
+cw = 0.29
 # Frontfläche:
-A = 0
+A = 2.15
 # Verlust durch rotierende Massen:
-C_rot = 0
+C_rot = 1.2
 #####################
 # Funktionen zur berechnung der Fahrtwiderstände
 # pV: momentane Geschwindigkeit (m/s
@@ -20,7 +20,7 @@ C_rot = 0
 # pAlpha: steigungswinkel (rad)
 
 def f(pV):
-    return 1
+    return 0.015
 def F_ST(pAlpha):
     return m*g*sin(pAlpha)
 def F_r(pV, pAlpha):
@@ -30,7 +30,7 @@ def F_L(pV):
 def F_a(pa):
     return (1+C_rot)*m*pa
 def F_w(pV, pa, pAlpha):
-    return F_ST(pAlpha)+F_r(pV,pAlpha)+F_L(pV)+F_a(pa)
+    return F_r(pV,pAlpha)+F_L(pV)+F_a(pa)
 
 #####################
 # Funktionen zur Momentanen Bestimmung der Leistung des Motors
@@ -39,7 +39,7 @@ def leistung_1(pV, pa ,pAlpha):
     # pV: momentane Geschwindigkeit
     # pa: momentane Beschleunigung
     # pAlpha: steigungswinkel
-    return F_w(pV, pa, pAlpha) * pV
+    return F_ST(pAlpha)F_w(pV, pa, pAlpha) * pV
 
 def leistung_2(pL,pRPM):
     pass
