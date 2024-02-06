@@ -39,7 +39,12 @@ def leistung_1(pV, pa ,pAlpha):
     # pV: momentane Geschwindigkeit
     # pa: momentane Beschleunigung
     # pAlpha: steigungswinkel
-    return F_w(pV, pa, pAlpha) * pV
+    sum = F_w(pV, pa, pAlpha) * pV
+    if 0 > sum:
+        sum = 0
+    return sum
 
 def leistung_2(pL,pRPM):
     pass
+
+#%%
